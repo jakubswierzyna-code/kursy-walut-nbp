@@ -1,0 +1,12 @@
+DimDate = CALENDAR(MIN(KursWalut[data_waluty]), MAX(KursWalut[data_waluty]))
+
+ŚredniaKrocząca30Dni = 
+CALCULATE(
+    AVERAGE(KursWalut[kurs]),
+    DATESINPERIOD(
+        'DimDate'[Date],
+        MAX('DimDate'[Date]),
+        -30,
+        DAY
+    )
+)
