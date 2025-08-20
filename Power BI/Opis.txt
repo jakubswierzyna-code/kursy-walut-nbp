@@ -1,0 +1,26 @@
+Dane zaczytane z tabeli KursWalut.
+W Power BI dodałem nową tabelę:
+DimDate = CALENDAR(MIN(KursWalut[data_waluty]), MAX(KursWalut[data_waluty]))
+
+Do tej tabeli dodałem 3 kolumny:
+Rok = YEAR(DimDate[Date])
+Miesiąc = FORMAT(DimDate[Date], "MMMM")
+RokMiesiąc = FORMAT(DimDate[Date], "YYYY-MM")
+
+
+Następnie dodałem miarę:
+ŚredniaKrocząca30Dni = 
+CALCULATE(
+    AVERAGE(KursWalut[kurs]),
+    DATESINPERIOD(
+        'DimDate'[Date],
+        MAX('DimDate'[Date]),
+        -30,
+        DAY
+    )
+)
+
+
+Stworzyłem wykres liniowy ponieważ wydaje mi się ze on najlepiej obrazuje kursy walut, a dla wartości Y wstawiłem KursWalut[kurs] i ŚredniaKrocząca30Dni.
+
+

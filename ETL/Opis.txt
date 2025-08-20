@@ -1,0 +1,9 @@
+Opis paczki kursy walut.
+Każdą z trzech walut pobieram osobno - wybrałem ten sposób ponieważ poprzez api nbp nie można wybrać trzech walut naraz.
+Dla każdej waluty tworzę dwie zmienne: 
+1) czy_jest_? mówi o tym czy są już dane dla waluty
+2) Dane? zawiera dane pobrane z api nbp.
+Na początku sprawdzam czy dane sa już zawarte w tabeli - a dokładnie pytam o 2 stycznia 2020.
+Tutaj sa dwie opcje: jeżeli nie ma idziemy lewą stroną i zaczytujemy dane poprzez c# od 2020r, do dnia wczorajszego. Jeżeli sa idziemy prawą ścieżką i zaczytujemy dane tylko dla dnia wczorajszego.
+Obydwie drogi prowadzą do krojenia jsona i zapisu danych do tabeli.
+
